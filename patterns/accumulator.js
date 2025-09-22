@@ -22,7 +22,16 @@ export function sumToN(n) {
  * @returns `1` if n is 0
  */
 export function factorial(n) {
-  // TODO
+  if (typeof n !== "number") return NaN;
+  else if (n < 0) return undefined;
+  else if (n === 0) return 1;
+  else {
+    let product = 1;
+    for (let i = 1; i <= n; i++) {
+      product *= i;
+    }
+    return product;
+  }
 }
 
 /**
@@ -32,7 +41,15 @@ export function factorial(n) {
  * @returns `[]` if n is 0 or negative
  */
 export function buildNArray(n) {
-  // TODO
+  if (typeof n !== "number") return null;
+  else if (n <= 0) return [];
+  else {
+    const array = [];
+    for (let i = 1; i <= n; i++) {
+      array.push(i);
+    }
+    return array;
+  }
 }
 
 /**
@@ -40,15 +57,33 @@ export function buildNArray(n) {
  * @returns {string} the longest string in `strings`
  */
 export function getLongestString(strings) {
-  // TODO
+  if (strings.length === 0) return "";
+  else {
+    let maxString = strings[0];
+    for (let i = 1; i < strings.length; i++) {
+      if (strings[i].length > maxString.length) {
+        maxString = strings[i];
+      }
+    }
+    return maxString;
+  }
 }
-
 /**
  * @param {boolean[]} attendance - `true` means a student is present, `false` means a student is absent
  * @returns {number} the number of students present
  */
 export function countPresent(attendance) {
-  // TODO
+  // if (Array.isArray(attendance) === "") return 0;
+  // else if (attendance !== true) return 0;
+  // else {
+  if (!Array.isArray(attendance) || attendance.length === 0) return 0;
+  let attendanceTotal = 0;
+  for (let i = 0; i < attendance.length; i++) {
+    if (attendance[i] === true) {
+      attendanceTotal += 1;
+    }
+  }
+  return attendanceTotal;
 }
 
 /**
@@ -62,5 +97,17 @@ export function countPresent(attendance) {
  * @returns `null` if `dna` is not a string
  */
 export function complementDNA(dna) {
-  // TODO
+  if (typeof dna !== "string") return null;
+  else if (dna.length === 0) return "";
+  const dnaArray = [];
+  for (let i = 0; i < dna.length; i++) {
+    if (dna[i] === "A") dnaArray.push("T");
+    else if (dna[i] === "T") dnaArray.push("A");
+    else if (dna[i] === "G") dnaArray.push("C");
+    else if (dna[i] === "C") dnaArray.push("G");
+    else {
+      dnaArray.push(dna[i]);
+    }
+  }
+  return dnaArray.join("");
 }
